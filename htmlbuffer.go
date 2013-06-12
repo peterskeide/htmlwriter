@@ -30,11 +30,23 @@ func (b *HtmlBuffer) Html5(attrs Attrs, innerHtml func()) {
 
 func (b *HtmlBuffer) Text(text string) {
 	text = html.EscapeString(text)
-	b.WriteString(text)
+	b.RawText(text)
+}
+
+func (b *HtmlBuffer) TextF(text string) func() {
+	return func() {
+		b.Text(text)
+	}
 }
 
 func (b *HtmlBuffer) RawText(text string) {
 	b.WriteString(text)
+}
+
+func (b *HtmlBuffer) RawTextF(text string) func() {
+	return func() {
+		b.RawText(text)
+	}
 }
 
 func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter) {
@@ -65,11 +77,5 @@ func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
 				b.WriteString("=\"" + value + "\"")
 			}
 		}
-	}
-}
-
-func Text(b *HtmlBuffer, text string) func() {
-	return func() {
-		b.Text(text)
 	}
 }

@@ -31,29 +31,48 @@ func TestWriteElementWritesStartTagWithAttributes(t *testing.T) {
 // HtmlBuffer#WriteElement
 func TestWriteElementShouldWriteElementWithInnerHtml(t *testing.T) {
 	buffer.WriteElement("div", nil, func() {
-		buffer.WriteElement("span", Attrs{"class": "highlight"}, func() {
-			buffer.Text("lorem ipsum")
-		})
+		buffer.WriteElement("span", Attrs{"class": "highlight"}, buffer.TextF("lorem ipsum"))
 	})
 
 	assertBufferMatches(t, "<div><span class=\"highlight\">lorem ipsum</span></div>", "Failed to write element with inner html.")
 }
 
 // HtmlBuffer#RawText
-func TestRawTextWritesTextToBuffer(t *testing.T) {
+func TestRawTextWritesStringToBuffer(t *testing.T) {
 	buffer.RawText("lorem ipsum")
 	assertBufferMatches(t, "lorem ipsum", "Buffer did not contain expected raw text.")
 }
 
+// HtmlBuffer#RawTextF
+func TestRawTextFReturnsFuncThatWritesStringToBuffer(t *testing.T) {
+	innerHtml := buffer.RawTextF("lorem ipsum")
+	innerHtml()
+	assertBufferMatches(t, "lorem ipsum", "Buffer did not contain expected raw text.")
+}
+
 // HtmlBuffer#Text
-func TestTextWritesTextToBuffer(t *testing.T) {
-	buffer.Text("foobar")
-	assertBufferMatches(t, "foobar", "Buffer did not contain expected text.")
+func TestTextWritesStringToBuffer(t *testing.T) {
+	buffer.Text("bilbo baggins")
+	assertBufferMatches(t, "bilbo baggins", "Buffer did not contain expected text.")
 }
 
 // HtmlBuffer#Text
 func TestTextWritesEscapedHtmlToBuffer(t *testing.T) {
-	buffer.Text("<div>hello world</div>")
+	buffer.Text("<span>yo!</span>")
+	assertBufferMatches(t, "&lt;span&gt;yo!&lt;/span&gt;", "Buffer did not contain escaped html.")
+}
+
+// HtmlBuffer#TextF
+func TestTextFReturnsFuncThatWritesStringToBuffer(t *testing.T) {
+	innerHtml := buffer.TextF("foobar")
+	innerHtml()
+	assertBufferMatches(t, "foobar", "Buffer did not contain expected text.")
+}
+
+// HtmlBuffer#TextF
+func TestTextFReturnsFuncThatWritesEscapedHtmlToBuffer(t *testing.T) {
+	innerHtml := buffer.TextF("<div>hello world</div>")
+	innerHtml()
 	assertBufferMatches(t, "&lt;div&gt;hello world&lt;/div&gt;", "Buffer did not contain escaped html.")
 }
 
@@ -76,12 +95,4 @@ func TestHtml5WritesDoctypeAndHtmlElement(t *testing.T) {
 	})
 
 	assertBufferMatches(t, "<!DOCTYPE html>\n<html></html>", "Failed to write valid html element with doctype")
-}
-
-// --- Test for other types/functions ---
-
-func TestTextReturnsFuncThatWritesGivenStringToBuffer(t *testing.T) {
-	innerHtml := Text(buffer, "lorem ipsum dolor si amit")
-	innerHtml()
-	assertBufferMatches(t, "lorem ipsum dolor si amit", "Failed to write expected text to buffer.")
 }
