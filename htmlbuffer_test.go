@@ -18,21 +18,21 @@ func assertBufferMatches(t *testing.T, expected string, errorMessage string) {
 
 // HtmlBuffer#WriteElement
 func TestWriteElementWritesStartTag(t *testing.T) {
-	buffer.WriteElement("input", nil, nil)
+	buffer.WriteElement("input", nil, nil, false)
 	assertBufferMatches(t, "<input>", "Failed to write valid start tag")
 }
 
 // HtmlBuffer#WriteElement
 func TestWriteElementWritesStartTagWithAttributes(t *testing.T) {
-	buffer.WriteElement("input", Attrs{"id": "test", "class": "main"}, nil)
+	buffer.WriteElement("input", Attrs{"id": "test", "class": "main"}, nil, false)
 	assertBufferMatches(t, "<input id=\"test\" class=\"main\">", "Failed to write valid start tag with attributes.")
 }
 
 // HtmlBuffer#WriteElement
 func TestWriteElementShouldWriteElementWithInnerHtml(t *testing.T) {
 	buffer.WriteElement("div", nil, func() {
-		buffer.WriteElement("span", Attrs{"class": "highlight"}, buffer.TextF("lorem ipsum"))
-	})
+		buffer.WriteElement("span", Attrs{"class": "highlight"}, buffer.TextF("lorem ipsum"), true)
+	}, true)
 
 	assertBufferMatches(t, "<div><span class=\"highlight\">lorem ipsum</span></div>", "Failed to write element with inner html.")
 }
@@ -74,6 +74,18 @@ func TestTextFReturnsFuncThatWritesEscapedHtmlToBuffer(t *testing.T) {
 	innerHtml := buffer.TextF("<div>hello world</div>")
 	innerHtml()
 	assertBufferMatches(t, "&lt;div&gt;hello world&lt;/div&gt;", "Buffer did not contain escaped html.")
+}
+
+// HtmlBuffer#WriteNormalElement
+func TestWriteNormalElementWritesElementWithStartAndEndTags(t *testing.T) {
+	buffer.WriteNormalElement("a", nil, nil)
+	assertBufferMatches(t, "<a></a>", "Failed to write element with start and end tags")
+}
+
+// HtmlBuffer#WriteNormalElement
+func TestWriteNormalElementWritesElementWithAttributes(t *testing.T) {
+	buffer.WriteNormalElement("a", Attrs{"href": "http://www.example.com"}, nil)
+	assertBufferMatches(t, "<a href=\"http://www.example.com\"></a>", "Failed to write normal element with attributes")
 }
 
 // HtmlBuffer#WriteVoidElement

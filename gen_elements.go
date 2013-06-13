@@ -3,754 +3,754 @@
 package htmlbuffer
 
 func (b *HtmlBuffer) Head(attrs Attrs, innerHtml func()) {
-	b.WriteElement("head", attrs, innerHtml)
+	b.WriteNormalElement("head", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Head_(innerHtml func()) {
-	b.WriteElement("head", nil, innerHtml)
+	b.WriteNormalElement("head", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Title(attrs Attrs, innerHtml func()) {
-	b.WriteElement("title", attrs, innerHtml)
+	b.WriteNormalElement("title", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Title_(innerHtml func()) {
-	b.WriteElement("title", nil, innerHtml)
+	b.WriteNormalElement("title", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Style(attrs Attrs, innerHtml func()) {
-	b.WriteElement("style", attrs, innerHtml)
+	b.WriteNormalElement("style", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Style_(innerHtml func()) {
-	b.WriteElement("style", nil, innerHtml)
+	b.WriteNormalElement("style", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Script(attrs Attrs, innerHtml func()) {
-	b.WriteElement("script", attrs, innerHtml)
+	b.WriteNormalElement("script", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Script_(innerHtml func()) {
-	b.WriteElement("script", nil, innerHtml)
+	b.WriteNormalElement("script", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Noscript(attrs Attrs, innerHtml func()) {
-	b.WriteElement("noscript", attrs, innerHtml)
+	b.WriteNormalElement("noscript", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Noscript_(innerHtml func()) {
-	b.WriteElement("noscript", nil, innerHtml)
+	b.WriteNormalElement("noscript", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Body(attrs Attrs, innerHtml func()) {
-	b.WriteElement("body", attrs, innerHtml)
+	b.WriteNormalElement("body", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Body_(innerHtml func()) {
-	b.WriteElement("body", nil, innerHtml)
+	b.WriteNormalElement("body", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Section(attrs Attrs, innerHtml func()) {
-	b.WriteElement("section", attrs, innerHtml)
+	b.WriteNormalElement("section", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Section_(innerHtml func()) {
-	b.WriteElement("section", nil, innerHtml)
+	b.WriteNormalElement("section", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Nav(attrs Attrs, innerHtml func()) {
-	b.WriteElement("nav", attrs, innerHtml)
+	b.WriteNormalElement("nav", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Nav_(innerHtml func()) {
-	b.WriteElement("nav", nil, innerHtml)
+	b.WriteNormalElement("nav", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Article(attrs Attrs, innerHtml func()) {
-	b.WriteElement("article", attrs, innerHtml)
+	b.WriteNormalElement("article", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Article_(innerHtml func()) {
-	b.WriteElement("article", nil, innerHtml)
+	b.WriteNormalElement("article", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Aside(attrs Attrs, innerHtml func()) {
-	b.WriteElement("aside", attrs, innerHtml)
+	b.WriteNormalElement("aside", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Aside_(innerHtml func()) {
-	b.WriteElement("aside", nil, innerHtml)
+	b.WriteNormalElement("aside", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H1(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h1", attrs, innerHtml)
+	b.WriteNormalElement("h1", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H1_(innerHtml func()) {
-	b.WriteElement("h1", nil, innerHtml)
+	b.WriteNormalElement("h1", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H2(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h2", attrs, innerHtml)
+	b.WriteNormalElement("h2", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H2_(innerHtml func()) {
-	b.WriteElement("h2", nil, innerHtml)
+	b.WriteNormalElement("h2", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H3(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h3", attrs, innerHtml)
+	b.WriteNormalElement("h3", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H3_(innerHtml func()) {
-	b.WriteElement("h3", nil, innerHtml)
+	b.WriteNormalElement("h3", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H4(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h4", attrs, innerHtml)
+	b.WriteNormalElement("h4", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H4_(innerHtml func()) {
-	b.WriteElement("h4", nil, innerHtml)
+	b.WriteNormalElement("h4", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H5(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h5", attrs, innerHtml)
+	b.WriteNormalElement("h5", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H5_(innerHtml func()) {
-	b.WriteElement("h5", nil, innerHtml)
+	b.WriteNormalElement("h5", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) H6(attrs Attrs, innerHtml func()) {
-	b.WriteElement("h6", attrs, innerHtml)
+	b.WriteNormalElement("h6", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) H6_(innerHtml func()) {
-	b.WriteElement("h6", nil, innerHtml)
+	b.WriteNormalElement("h6", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Header(attrs Attrs, innerHtml func()) {
-	b.WriteElement("header", attrs, innerHtml)
+	b.WriteNormalElement("header", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Header_(innerHtml func()) {
-	b.WriteElement("header", nil, innerHtml)
+	b.WriteNormalElement("header", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Footer(attrs Attrs, innerHtml func()) {
-	b.WriteElement("footer", attrs, innerHtml)
+	b.WriteNormalElement("footer", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Footer_(innerHtml func()) {
-	b.WriteElement("footer", nil, innerHtml)
+	b.WriteNormalElement("footer", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Address(attrs Attrs, innerHtml func()) {
-	b.WriteElement("address", attrs, innerHtml)
+	b.WriteNormalElement("address", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Address_(innerHtml func()) {
-	b.WriteElement("address", nil, innerHtml)
+	b.WriteNormalElement("address", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Main(attrs Attrs, innerHtml func()) {
-	b.WriteElement("main", attrs, innerHtml)
+	b.WriteNormalElement("main", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Main_(innerHtml func()) {
-	b.WriteElement("main", nil, innerHtml)
+	b.WriteNormalElement("main", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) P(attrs Attrs, innerHtml func()) {
-	b.WriteElement("p", attrs, innerHtml)
+	b.WriteNormalElement("p", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) P_(innerHtml func()) {
-	b.WriteElement("p", nil, innerHtml)
+	b.WriteNormalElement("p", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Pre(attrs Attrs, innerHtml func()) {
-	b.WriteElement("pre", attrs, innerHtml)
+	b.WriteNormalElement("pre", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Pre_(innerHtml func()) {
-	b.WriteElement("pre", nil, innerHtml)
+	b.WriteNormalElement("pre", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Blockquote(attrs Attrs, innerHtml func()) {
-	b.WriteElement("blockquote", attrs, innerHtml)
+	b.WriteNormalElement("blockquote", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Blockquote_(innerHtml func()) {
-	b.WriteElement("blockquote", nil, innerHtml)
+	b.WriteNormalElement("blockquote", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Ol(attrs Attrs, innerHtml func()) {
-	b.WriteElement("ol", attrs, innerHtml)
+	b.WriteNormalElement("ol", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Ol_(innerHtml func()) {
-	b.WriteElement("ol", nil, innerHtml)
+	b.WriteNormalElement("ol", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Ul(attrs Attrs, innerHtml func()) {
-	b.WriteElement("ul", attrs, innerHtml)
+	b.WriteNormalElement("ul", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Ul_(innerHtml func()) {
-	b.WriteElement("ul", nil, innerHtml)
+	b.WriteNormalElement("ul", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Li(attrs Attrs, innerHtml func()) {
-	b.WriteElement("li", attrs, innerHtml)
+	b.WriteNormalElement("li", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Li_(innerHtml func()) {
-	b.WriteElement("li", nil, innerHtml)
+	b.WriteNormalElement("li", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Dl(attrs Attrs, innerHtml func()) {
-	b.WriteElement("dl", attrs, innerHtml)
+	b.WriteNormalElement("dl", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Dl_(innerHtml func()) {
-	b.WriteElement("dl", nil, innerHtml)
+	b.WriteNormalElement("dl", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Dt(attrs Attrs, innerHtml func()) {
-	b.WriteElement("dt", attrs, innerHtml)
+	b.WriteNormalElement("dt", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Dt_(innerHtml func()) {
-	b.WriteElement("dt", nil, innerHtml)
+	b.WriteNormalElement("dt", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Dd(attrs Attrs, innerHtml func()) {
-	b.WriteElement("dd", attrs, innerHtml)
+	b.WriteNormalElement("dd", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Dd_(innerHtml func()) {
-	b.WriteElement("dd", nil, innerHtml)
+	b.WriteNormalElement("dd", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Figure(attrs Attrs, innerHtml func()) {
-	b.WriteElement("figure", attrs, innerHtml)
+	b.WriteNormalElement("figure", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Figure_(innerHtml func()) {
-	b.WriteElement("figure", nil, innerHtml)
+	b.WriteNormalElement("figure", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Figcaption(attrs Attrs, innerHtml func()) {
-	b.WriteElement("figcaption", attrs, innerHtml)
+	b.WriteNormalElement("figcaption", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Figcaption_(innerHtml func()) {
-	b.WriteElement("figcaption", nil, innerHtml)
+	b.WriteNormalElement("figcaption", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Div(attrs Attrs, innerHtml func()) {
-	b.WriteElement("div", attrs, innerHtml)
+	b.WriteNormalElement("div", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Div_(innerHtml func()) {
-	b.WriteElement("div", nil, innerHtml)
+	b.WriteNormalElement("div", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) A(attrs Attrs, innerHtml func()) {
-	b.WriteElement("a", attrs, innerHtml)
+	b.WriteNormalElement("a", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) A_(innerHtml func()) {
-	b.WriteElement("a", nil, innerHtml)
+	b.WriteNormalElement("a", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Em(attrs Attrs, innerHtml func()) {
-	b.WriteElement("em", attrs, innerHtml)
+	b.WriteNormalElement("em", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Em_(innerHtml func()) {
-	b.WriteElement("em", nil, innerHtml)
+	b.WriteNormalElement("em", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Strong(attrs Attrs, innerHtml func()) {
-	b.WriteElement("strong", attrs, innerHtml)
+	b.WriteNormalElement("strong", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Strong_(innerHtml func()) {
-	b.WriteElement("strong", nil, innerHtml)
+	b.WriteNormalElement("strong", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Small(attrs Attrs, innerHtml func()) {
-	b.WriteElement("small", attrs, innerHtml)
+	b.WriteNormalElement("small", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Small_(innerHtml func()) {
-	b.WriteElement("small", nil, innerHtml)
+	b.WriteNormalElement("small", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) S(attrs Attrs, innerHtml func()) {
-	b.WriteElement("s", attrs, innerHtml)
+	b.WriteNormalElement("s", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) S_(innerHtml func()) {
-	b.WriteElement("s", nil, innerHtml)
+	b.WriteNormalElement("s", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Cite(attrs Attrs, innerHtml func()) {
-	b.WriteElement("cite", attrs, innerHtml)
+	b.WriteNormalElement("cite", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Cite_(innerHtml func()) {
-	b.WriteElement("cite", nil, innerHtml)
+	b.WriteNormalElement("cite", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Q(attrs Attrs, innerHtml func()) {
-	b.WriteElement("q", attrs, innerHtml)
+	b.WriteNormalElement("q", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Q_(innerHtml func()) {
-	b.WriteElement("q", nil, innerHtml)
+	b.WriteNormalElement("q", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Dfn(attrs Attrs, innerHtml func()) {
-	b.WriteElement("dfn", attrs, innerHtml)
+	b.WriteNormalElement("dfn", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Dfn_(innerHtml func()) {
-	b.WriteElement("dfn", nil, innerHtml)
+	b.WriteNormalElement("dfn", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Abbr(attrs Attrs, innerHtml func()) {
-	b.WriteElement("abbr", attrs, innerHtml)
+	b.WriteNormalElement("abbr", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Abbr_(innerHtml func()) {
-	b.WriteElement("abbr", nil, innerHtml)
+	b.WriteNormalElement("abbr", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Data(attrs Attrs, innerHtml func()) {
-	b.WriteElement("data", attrs, innerHtml)
+	b.WriteNormalElement("data", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Data_(innerHtml func()) {
-	b.WriteElement("data", nil, innerHtml)
+	b.WriteNormalElement("data", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Time(attrs Attrs, innerHtml func()) {
-	b.WriteElement("time", attrs, innerHtml)
+	b.WriteNormalElement("time", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Time_(innerHtml func()) {
-	b.WriteElement("time", nil, innerHtml)
+	b.WriteNormalElement("time", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Code(attrs Attrs, innerHtml func()) {
-	b.WriteElement("code", attrs, innerHtml)
+	b.WriteNormalElement("code", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Code_(innerHtml func()) {
-	b.WriteElement("code", nil, innerHtml)
+	b.WriteNormalElement("code", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Var(attrs Attrs, innerHtml func()) {
-	b.WriteElement("var", attrs, innerHtml)
+	b.WriteNormalElement("var", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Var_(innerHtml func()) {
-	b.WriteElement("var", nil, innerHtml)
+	b.WriteNormalElement("var", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Samp(attrs Attrs, innerHtml func()) {
-	b.WriteElement("samp", attrs, innerHtml)
+	b.WriteNormalElement("samp", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Samp_(innerHtml func()) {
-	b.WriteElement("samp", nil, innerHtml)
+	b.WriteNormalElement("samp", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Kbd(attrs Attrs, innerHtml func()) {
-	b.WriteElement("kbd", attrs, innerHtml)
+	b.WriteNormalElement("kbd", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Kbd_(innerHtml func()) {
-	b.WriteElement("kbd", nil, innerHtml)
+	b.WriteNormalElement("kbd", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Sub(attrs Attrs, innerHtml func()) {
-	b.WriteElement("sub", attrs, innerHtml)
+	b.WriteNormalElement("sub", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Sub_(innerHtml func()) {
-	b.WriteElement("sub", nil, innerHtml)
+	b.WriteNormalElement("sub", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Sup(attrs Attrs, innerHtml func()) {
-	b.WriteElement("sup", attrs, innerHtml)
+	b.WriteNormalElement("sup", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Sup_(innerHtml func()) {
-	b.WriteElement("sup", nil, innerHtml)
+	b.WriteNormalElement("sup", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) I(attrs Attrs, innerHtml func()) {
-	b.WriteElement("i", attrs, innerHtml)
+	b.WriteNormalElement("i", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) I_(innerHtml func()) {
-	b.WriteElement("i", nil, innerHtml)
+	b.WriteNormalElement("i", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) B(attrs Attrs, innerHtml func()) {
-	b.WriteElement("b", attrs, innerHtml)
+	b.WriteNormalElement("b", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) B_(innerHtml func()) {
-	b.WriteElement("b", nil, innerHtml)
+	b.WriteNormalElement("b", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) U(attrs Attrs, innerHtml func()) {
-	b.WriteElement("u", attrs, innerHtml)
+	b.WriteNormalElement("u", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) U_(innerHtml func()) {
-	b.WriteElement("u", nil, innerHtml)
+	b.WriteNormalElement("u", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Mark(attrs Attrs, innerHtml func()) {
-	b.WriteElement("mark", attrs, innerHtml)
+	b.WriteNormalElement("mark", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Mark_(innerHtml func()) {
-	b.WriteElement("mark", nil, innerHtml)
+	b.WriteNormalElement("mark", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Ruby(attrs Attrs, innerHtml func()) {
-	b.WriteElement("ruby", attrs, innerHtml)
+	b.WriteNormalElement("ruby", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Ruby_(innerHtml func()) {
-	b.WriteElement("ruby", nil, innerHtml)
+	b.WriteNormalElement("ruby", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Rt(attrs Attrs, innerHtml func()) {
-	b.WriteElement("rt", attrs, innerHtml)
+	b.WriteNormalElement("rt", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Rt_(innerHtml func()) {
-	b.WriteElement("rt", nil, innerHtml)
+	b.WriteNormalElement("rt", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Rp(attrs Attrs, innerHtml func()) {
-	b.WriteElement("rp", attrs, innerHtml)
+	b.WriteNormalElement("rp", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Rp_(innerHtml func()) {
-	b.WriteElement("rp", nil, innerHtml)
+	b.WriteNormalElement("rp", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Bdi(attrs Attrs, innerHtml func()) {
-	b.WriteElement("bdi", attrs, innerHtml)
+	b.WriteNormalElement("bdi", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Bdi_(innerHtml func()) {
-	b.WriteElement("bdi", nil, innerHtml)
+	b.WriteNormalElement("bdi", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Bdo(attrs Attrs, innerHtml func()) {
-	b.WriteElement("bdo", attrs, innerHtml)
+	b.WriteNormalElement("bdo", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Bdo_(innerHtml func()) {
-	b.WriteElement("bdo", nil, innerHtml)
+	b.WriteNormalElement("bdo", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Span(attrs Attrs, innerHtml func()) {
-	b.WriteElement("span", attrs, innerHtml)
+	b.WriteNormalElement("span", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Span_(innerHtml func()) {
-	b.WriteElement("span", nil, innerHtml)
+	b.WriteNormalElement("span", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Ins(attrs Attrs, innerHtml func()) {
-	b.WriteElement("ins", attrs, innerHtml)
+	b.WriteNormalElement("ins", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Ins_(innerHtml func()) {
-	b.WriteElement("ins", nil, innerHtml)
+	b.WriteNormalElement("ins", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Del(attrs Attrs, innerHtml func()) {
-	b.WriteElement("del", attrs, innerHtml)
+	b.WriteNormalElement("del", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Del_(innerHtml func()) {
-	b.WriteElement("del", nil, innerHtml)
+	b.WriteNormalElement("del", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Iframe(attrs Attrs, innerHtml func()) {
-	b.WriteElement("iframe", attrs, innerHtml)
+	b.WriteNormalElement("iframe", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Iframe_(innerHtml func()) {
-	b.WriteElement("iframe", nil, innerHtml)
+	b.WriteNormalElement("iframe", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Object(attrs Attrs, innerHtml func()) {
-	b.WriteElement("object", attrs, innerHtml)
+	b.WriteNormalElement("object", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Object_(innerHtml func()) {
-	b.WriteElement("object", nil, innerHtml)
+	b.WriteNormalElement("object", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Video(attrs Attrs, innerHtml func()) {
-	b.WriteElement("video", attrs, innerHtml)
+	b.WriteNormalElement("video", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Video_(innerHtml func()) {
-	b.WriteElement("video", nil, innerHtml)
+	b.WriteNormalElement("video", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Audio(attrs Attrs, innerHtml func()) {
-	b.WriteElement("audio", attrs, innerHtml)
+	b.WriteNormalElement("audio", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Audio_(innerHtml func()) {
-	b.WriteElement("audio", nil, innerHtml)
+	b.WriteNormalElement("audio", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Canvas(attrs Attrs, innerHtml func()) {
-	b.WriteElement("canvas", attrs, innerHtml)
+	b.WriteNormalElement("canvas", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Canvas_(innerHtml func()) {
-	b.WriteElement("canvas", nil, innerHtml)
+	b.WriteNormalElement("canvas", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Map(attrs Attrs, innerHtml func()) {
-	b.WriteElement("map", attrs, innerHtml)
+	b.WriteNormalElement("map", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Map_(innerHtml func()) {
-	b.WriteElement("map", nil, innerHtml)
+	b.WriteNormalElement("map", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Svg(attrs Attrs, innerHtml func()) {
-	b.WriteElement("svg", attrs, innerHtml)
+	b.WriteNormalElement("svg", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Svg_(innerHtml func()) {
-	b.WriteElement("svg", nil, innerHtml)
+	b.WriteNormalElement("svg", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Math(attrs Attrs, innerHtml func()) {
-	b.WriteElement("math", attrs, innerHtml)
+	b.WriteNormalElement("math", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Math_(innerHtml func()) {
-	b.WriteElement("math", nil, innerHtml)
+	b.WriteNormalElement("math", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Table(attrs Attrs, innerHtml func()) {
-	b.WriteElement("table", attrs, innerHtml)
+	b.WriteNormalElement("table", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Table_(innerHtml func()) {
-	b.WriteElement("table", nil, innerHtml)
+	b.WriteNormalElement("table", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Caption(attrs Attrs, innerHtml func()) {
-	b.WriteElement("caption", attrs, innerHtml)
+	b.WriteNormalElement("caption", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Caption_(innerHtml func()) {
-	b.WriteElement("caption", nil, innerHtml)
+	b.WriteNormalElement("caption", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Colgroup(attrs Attrs, innerHtml func()) {
-	b.WriteElement("colgroup", attrs, innerHtml)
+	b.WriteNormalElement("colgroup", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Colgroup_(innerHtml func()) {
-	b.WriteElement("colgroup", nil, innerHtml)
+	b.WriteNormalElement("colgroup", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Tbody(attrs Attrs, innerHtml func()) {
-	b.WriteElement("tbody", attrs, innerHtml)
+	b.WriteNormalElement("tbody", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Tbody_(innerHtml func()) {
-	b.WriteElement("tbody", nil, innerHtml)
+	b.WriteNormalElement("tbody", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Thead(attrs Attrs, innerHtml func()) {
-	b.WriteElement("thead", attrs, innerHtml)
+	b.WriteNormalElement("thead", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Thead_(innerHtml func()) {
-	b.WriteElement("thead", nil, innerHtml)
+	b.WriteNormalElement("thead", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Tfoot(attrs Attrs, innerHtml func()) {
-	b.WriteElement("tfoot", attrs, innerHtml)
+	b.WriteNormalElement("tfoot", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Tfoot_(innerHtml func()) {
-	b.WriteElement("tfoot", nil, innerHtml)
+	b.WriteNormalElement("tfoot", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Tr(attrs Attrs, innerHtml func()) {
-	b.WriteElement("tr", attrs, innerHtml)
+	b.WriteNormalElement("tr", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Tr_(innerHtml func()) {
-	b.WriteElement("tr", nil, innerHtml)
+	b.WriteNormalElement("tr", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Td(attrs Attrs, innerHtml func()) {
-	b.WriteElement("td", attrs, innerHtml)
+	b.WriteNormalElement("td", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Td_(innerHtml func()) {
-	b.WriteElement("td", nil, innerHtml)
+	b.WriteNormalElement("td", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Th(attrs Attrs, innerHtml func()) {
-	b.WriteElement("th", attrs, innerHtml)
+	b.WriteNormalElement("th", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Th_(innerHtml func()) {
-	b.WriteElement("th", nil, innerHtml)
+	b.WriteNormalElement("th", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Form(attrs Attrs, innerHtml func()) {
-	b.WriteElement("form", attrs, innerHtml)
+	b.WriteNormalElement("form", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Form_(innerHtml func()) {
-	b.WriteElement("form", nil, innerHtml)
+	b.WriteNormalElement("form", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Fieldset(attrs Attrs, innerHtml func()) {
-	b.WriteElement("fieldset", attrs, innerHtml)
+	b.WriteNormalElement("fieldset", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Fieldset_(innerHtml func()) {
-	b.WriteElement("fieldset", nil, innerHtml)
+	b.WriteNormalElement("fieldset", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Legend(attrs Attrs, innerHtml func()) {
-	b.WriteElement("legend", attrs, innerHtml)
+	b.WriteNormalElement("legend", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Legend_(innerHtml func()) {
-	b.WriteElement("legend", nil, innerHtml)
+	b.WriteNormalElement("legend", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Label(attrs Attrs, innerHtml func()) {
-	b.WriteElement("label", attrs, innerHtml)
+	b.WriteNormalElement("label", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Label_(innerHtml func()) {
-	b.WriteElement("label", nil, innerHtml)
+	b.WriteNormalElement("label", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Button(attrs Attrs, innerHtml func()) {
-	b.WriteElement("button", attrs, innerHtml)
+	b.WriteNormalElement("button", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Button_(innerHtml func()) {
-	b.WriteElement("button", nil, innerHtml)
+	b.WriteNormalElement("button", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Select(attrs Attrs, innerHtml func()) {
-	b.WriteElement("select", attrs, innerHtml)
+	b.WriteNormalElement("select", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Select_(innerHtml func()) {
-	b.WriteElement("select", nil, innerHtml)
+	b.WriteNormalElement("select", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Datalist(attrs Attrs, innerHtml func()) {
-	b.WriteElement("datalist", attrs, innerHtml)
+	b.WriteNormalElement("datalist", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Datalist_(innerHtml func()) {
-	b.WriteElement("datalist", nil, innerHtml)
+	b.WriteNormalElement("datalist", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Optgroup(attrs Attrs, innerHtml func()) {
-	b.WriteElement("optgroup", attrs, innerHtml)
+	b.WriteNormalElement("optgroup", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Optgroup_(innerHtml func()) {
-	b.WriteElement("optgroup", nil, innerHtml)
+	b.WriteNormalElement("optgroup", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Option(attrs Attrs, innerHtml func()) {
-	b.WriteElement("option", attrs, innerHtml)
+	b.WriteNormalElement("option", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Option_(innerHtml func()) {
-	b.WriteElement("option", nil, innerHtml)
+	b.WriteNormalElement("option", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Textarea(attrs Attrs, innerHtml func()) {
-	b.WriteElement("textarea", attrs, innerHtml)
+	b.WriteNormalElement("textarea", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Textarea_(innerHtml func()) {
-	b.WriteElement("textarea", nil, innerHtml)
+	b.WriteNormalElement("textarea", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Output(attrs Attrs, innerHtml func()) {
-	b.WriteElement("output", attrs, innerHtml)
+	b.WriteNormalElement("output", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Output_(innerHtml func()) {
-	b.WriteElement("output", nil, innerHtml)
+	b.WriteNormalElement("output", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Progress(attrs Attrs, innerHtml func()) {
-	b.WriteElement("progress", attrs, innerHtml)
+	b.WriteNormalElement("progress", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Progress_(innerHtml func()) {
-	b.WriteElement("progress", nil, innerHtml)
+	b.WriteNormalElement("progress", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Meter(attrs Attrs, innerHtml func()) {
-	b.WriteElement("meter", attrs, innerHtml)
+	b.WriteNormalElement("meter", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Meter_(innerHtml func()) {
-	b.WriteElement("meter", nil, innerHtml)
+	b.WriteNormalElement("meter", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Details(attrs Attrs, innerHtml func()) {
-	b.WriteElement("details", attrs, innerHtml)
+	b.WriteNormalElement("details", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Details_(innerHtml func()) {
-	b.WriteElement("details", nil, innerHtml)
+	b.WriteNormalElement("details", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Summary(attrs Attrs, innerHtml func()) {
-	b.WriteElement("summary", attrs, innerHtml)
+	b.WriteNormalElement("summary", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Summary_(innerHtml func()) {
-	b.WriteElement("summary", nil, innerHtml)
+	b.WriteNormalElement("summary", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Menu(attrs Attrs, innerHtml func()) {
-	b.WriteElement("menu", attrs, innerHtml)
+	b.WriteNormalElement("menu", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Menu_(innerHtml func()) {
-	b.WriteElement("menu", nil, innerHtml)
+	b.WriteNormalElement("menu", nil, innerHtml)
 }
 

@@ -25,7 +25,7 @@ func WithHtmlBuffer(f func(b *HtmlBuffer)) string {
 
 func (b *HtmlBuffer) Html5(attrs Attrs, innerHtml func()) {
 	b.WriteString("<!DOCTYPE html>\n")
-	b.WriteElement("html", attrs, innerHtml)
+	b.WriteNormalElement("html", attrs, innerHtml)
 }
 
 func (b *HtmlBuffer) Html5_(innerHtml func()) {
@@ -57,19 +57,26 @@ func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter) {
 	io.WriteString(res, b.String())
 }
 
-func (b *HtmlBuffer) WriteElement(tagName string, attrs Attrs, innerHtml func()) {
+func (b *HtmlBuffer) WriteElement(tagName string, attrs Attrs, innerHtml func(), close bool) {
 	b.WriteString("<" + tagName)
 	b.writeAttributes(attrs)
 	b.WriteString(">")
 
 	if innerHtml != nil {
 		innerHtml()
+	}
+
+	if close {
 		b.WriteString("</" + tagName + ">")
 	}
 }
 
+func (b *HtmlBuffer) WriteNormalElement(tagName string, attrs Attrs, innerHtml func()) {
+	b.WriteElement(tagName, attrs, innerHtml, true)
+}
+
 func (b *HtmlBuffer) WriteVoidElement(tagName string, attrs Attrs) {
-	b.WriteElement(tagName, attrs, nil)
+	b.WriteElement(tagName, attrs, nil, false)
 }
 
 func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
