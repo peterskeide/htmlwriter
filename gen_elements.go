@@ -2,6 +2,14 @@
 
 package htmlbuffer
 
+func (b *HtmlBuffer) Html(attrs Attrs, innerHtml func()) {
+	b.WriteNormalElement("html", attrs, innerHtml)
+}
+
+func (b *HtmlBuffer) Html_(innerHtml func()) {
+	b.WriteNormalElement("html", nil, innerHtml)
+}
+
 func (b *HtmlBuffer) Head(attrs Attrs, innerHtml func()) {
 	b.WriteNormalElement("head", attrs, innerHtml)
 }

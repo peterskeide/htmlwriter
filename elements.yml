@@ -1,5 +1,6 @@
 ---
 non-void:
+  - html
   - head
   - title
   - style
