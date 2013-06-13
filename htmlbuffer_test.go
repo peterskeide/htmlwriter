@@ -16,22 +16,22 @@ func assertBufferMatches(t *testing.T, expected string, errorMessage string) {
 
 // --- Tests for the HtmlBuffer type ---
 
-// HtmlBuffer#WriteElement
+// HtmlBuffer#writeElement
 func TestWriteElementWritesStartTag(t *testing.T) {
-	buffer.WriteElement("input", nil, nil, false)
+	buffer.writeElement("input", nil, nil, false)
 	assertBufferMatches(t, "<input>", "Failed to write valid start tag")
 }
 
 // HtmlBuffer#WriteElement
 func TestWriteElementWritesStartTagWithAttributes(t *testing.T) {
-	buffer.WriteElement("input", Attrs{"id": "test", "class": "main"}, nil, false)
+	buffer.writeElement("input", Attrs{"id": "test", "class": "main"}, nil, false)
 	assertBufferMatches(t, "<input id=\"test\" class=\"main\">", "Failed to write valid start tag with attributes.")
 }
 
 // HtmlBuffer#WriteElement
 func TestWriteElementShouldWriteElementWithInnerHtml(t *testing.T) {
-	buffer.WriteElement("div", nil, func() {
-		buffer.WriteElement("span", Attrs{"class": "highlight"}, buffer.TextF("lorem ipsum"), true)
+	buffer.writeElement("div", nil, func() {
+		buffer.writeElement("span", Attrs{"class": "highlight"}, buffer.TextF("lorem ipsum"), true)
 	}, true)
 
 	assertBufferMatches(t, "<div><span class=\"highlight\">lorem ipsum</span></div>", "Failed to write element with inner html.")

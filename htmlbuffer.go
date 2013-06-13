@@ -49,7 +49,15 @@ func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter) {
 	io.WriteString(res, b.String())
 }
 
-func (b *HtmlBuffer) WriteElement(tagName string, attrs Attrs, innerHtml func(), close bool) {
+func (b *HtmlBuffer) WriteNormalElement(tagName string, attrs Attrs, innerHtml func()) {
+	b.writeElement(tagName, attrs, innerHtml, true)
+}
+
+func (b *HtmlBuffer) WriteVoidElement(tagName string, attrs Attrs) {
+	b.writeElement(tagName, attrs, nil, false)
+}
+
+func (b *HtmlBuffer) writeElement(tagName string, attrs Attrs, innerHtml func(), close bool) {
 	b.WriteString("<" + tagName)
 	b.writeAttributes(attrs)
 	b.WriteString(">")
@@ -61,14 +69,6 @@ func (b *HtmlBuffer) WriteElement(tagName string, attrs Attrs, innerHtml func(),
 	if close {
 		b.WriteString("</" + tagName + ">")
 	}
-}
-
-func (b *HtmlBuffer) WriteNormalElement(tagName string, attrs Attrs, innerHtml func()) {
-	b.WriteElement(tagName, attrs, innerHtml, true)
-}
-
-func (b *HtmlBuffer) WriteVoidElement(tagName string, attrs Attrs) {
-	b.WriteElement(tagName, attrs, nil, false)
 }
 
 func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
