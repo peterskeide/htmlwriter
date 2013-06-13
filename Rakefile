@@ -20,7 +20,7 @@ def create_elements_go_file(elements)
     elements.each do |el|
       func = <<FUNC
 func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, innerHtml func()) {
-\tb.WriteElement("#{el}", attrs, innerHtml)
+\tb.WriteNormalElement("#{el}", attrs, innerHtml)
 }
 
 FUNC
@@ -29,7 +29,7 @@ FUNC
 
       func_ = <<FUNC
 func (b *HtmlBuffer) #{el.capitalize}_(innerHtml func()) {
-\tb.WriteElement("#{el}", nil, innerHtml)
+\tb.WriteNormalElement("#{el}", nil, innerHtml)
 }
 
 FUNC
@@ -65,9 +65,41 @@ FUNC
   end
 end
 
+def create_input_elements_go_file(input_types)
+  input_elements_go_file = File.open("gen_input_elements.go", "w") do |f|
+    write_header(f)
+
+    input_types.each do |type|
+      func = <<FUNC
+func (b *HtmlBuffer) #{method_name_from_type(type)}(attrs Attrs) {
+\tattrs["type"] = "#{type}"
+\tb.Input(attrs)
+}
+
+FUNC
+
+      f << func
+
+      func_ = <<FUNC
+func (b *HtmlBuffer) #{method_name_from_type(type)}_() {
+\tb.Input(Attrs{"type": "#{type}"})
+}
+
+FUNC
+
+      f << func_
+    end
+  end
+end
+
+def method_name_from_type(type)
+  type.split("-").map { |str| str.capitalize }.join("") << "Input"
+end
+
 desc "Generate go file with elements"
 task :generate do
   elements = YAML.load_file("elements.yml")
   create_elements_go_file(elements["non-void"])
   create_void_elements_go_file(elements["void"])
+  create_input_elements_go_file(elements["inputs"])
 end
