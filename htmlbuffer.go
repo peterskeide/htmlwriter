@@ -24,15 +24,6 @@ func WithHtmlBuffer(f func(b *HtmlBuffer)) string {
 	return html.String()
 }
 
-func (b *HtmlBuffer) Html5(attrs Attrs, innerHtml func()) {
-	b.WriteString("<!DOCTYPE html>\n")
-	b.WriteNormalElement("html", attrs, innerHtml)
-}
-
-func (b *HtmlBuffer) Html5_(innerHtml func()) {
-	b.Html5(nil, innerHtml)
-}
-
 func (b *HtmlBuffer) Text(text string) {
 	text = html.EscapeString(text)
 	b.RawText(text)
