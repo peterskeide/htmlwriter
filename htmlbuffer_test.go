@@ -117,3 +117,29 @@ func TestHtml5_WritesDoctypeAndHtmlElement(t *testing.T) {
 	buffer.Html5_(buffer.TextF(""))
 	assertBufferMatches(t, "<!DOCTYPE html>\n<html></html>", "Failed to write valid html element with doctype")
 }
+
+// HtmlBuffer#Attrs
+func TestAttrsReturnsAttrsStructBasedOnGivenStringAttributesAndValues(t *testing.T) {
+	attrs := buffer.Attrs("id=foo", "class=main clearfix test", "checked", "data-test=test")
+	assertAttributeValid(t, "id", "foo", attrs)
+	assertAttributeValid(t, "class", "main clearfix test", attrs)
+	assertAttributeValid(t, "checked", "", attrs)
+	assertAttributeValid(t, "data-test", "test", attrs)
+}
+
+func assertAttributeValid(t *testing.T, attrName string, expectedValue string, attrs Attrs) {
+	if attrs[attrName] != expectedValue {
+		t.Error(attrName, "attribute missing or incorrect")
+	}
+}
+
+// HtmlBuffer#Attrs
+func TestAttrsPanicsIfAttributesStringIsInvalid(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("Expected panic, but everyone remained calm")
+		}
+	}()
+
+	buffer.Attrs("id=foo=bar")
+}

@@ -5,6 +5,7 @@ import (
 	"html"
 	"io"
 	"net/http"
+	"strings"
 )
 
 type Attrs map[string]string
@@ -89,4 +90,22 @@ func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
 			}
 		}
 	}
+}
+
+func (b *HtmlBuffer) Attrs(strAttrs ...string) Attrs {
+	attrs := Attrs{}
+
+	for _, attr := range strAttrs {
+		parts := strings.Split(attr, "=")
+		switch len(parts) {
+		case 1:
+			attrs[parts[0]] = ""
+		case 2:
+			attrs[parts[0]] = parts[1]
+		default:
+			panic("Invalid attribute string: " + attr)
+		}
+	}
+
+	return attrs
 }
