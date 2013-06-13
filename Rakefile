@@ -26,6 +26,15 @@ func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, innerHtml func()) {
 FUNC
 
       f << func
+
+      func_ = <<FUNC
+func (b *HtmlBuffer) #{el.capitalize}_(innerHtml func()) {
+\tb.WriteElement("#{el}", nil, innerHtml)
+}
+
+FUNC
+
+      f << func_
     end
   end
 end
@@ -42,7 +51,16 @@ func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs) {
 
 FUNC
 
-    f << func
+      f << func
+
+      func_ = <<FUNC
+func (b *HtmlBuffer) #{el.capitalize}_() {
+\tb.WriteVoidElement("#{el}", nil)
+}
+
+FUNC
+
+      f << func_
     end
   end
 end

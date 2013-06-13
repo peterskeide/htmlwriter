@@ -90,9 +90,18 @@ func TestWriteVoidElementWritestVoidElementWithAttributes(t *testing.T) {
 
 // HtmlBuffer#Html5
 func TestHtml5WritesDoctypeAndHtmlElement(t *testing.T) {
-	buffer.Html5(nil, func() {
-		buffer.Text("")
-	})
+	buffer.Html5(nil, buffer.TextF(""))
+	assertBufferMatches(t, "<!DOCTYPE html>\n<html></html>", "Failed to write valid html element with doctype")
+}
 
+// HtmlBuffer#Html5
+func TestHtml5WritesDoctypeAndHtmlElementWithAttributes(t *testing.T) {
+	buffer.Html5(Attrs{"lang": "en"}, buffer.TextF(""))
+	assertBufferMatches(t, "<!DOCTYPE html>\n<html lang=\"en\"></html>", "Failed to write valid html element with attributes and doctype")
+}
+
+// HtmlBuffer#Html5_
+func TestHtml5_WritesDoctypeAndHtmlElement(t *testing.T) {
+	buffer.Html5_(buffer.TextF(""))
 	assertBufferMatches(t, "<!DOCTYPE html>\n<html></html>", "Failed to write valid html element with doctype")
 }
