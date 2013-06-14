@@ -10,6 +10,11 @@ Stability
 
 The API is new and should be considered unstable. Expect changes.
 
+Installation
+------------
+
+    go get github.com/peterskeide/htmlbuffer
+
 Normal (non-void) elements
 --------------------------
 
