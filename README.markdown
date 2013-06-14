@@ -1,10 +1,14 @@
 HtmlBuffer
 ==========
 
-The HtmlBuffer is a struct that embeds a bytes.Buffer and decorates it with a set
-of conveniece methods for generating HTML 5 documents.
+The HtmlBuffer is a struct that embeds a bytes.Buffer and decorates it with a set of conveniece methods for generating HTML 5 documents.
 
 It supports all the elements listed [here](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list "HTML5 element list")
+
+Stability
+---------
+
+The API is new and should be considered unstable. Expect changes.
 
 Normal (non-void) elements
 --------------------------
@@ -42,7 +46,7 @@ escape HTML content, use the `RawText` method: `buffer.RawText("<div>foo</div>")
 Child elements
 --------------
 
-Elements can have child elements by passing a function to the element method:
+Elements can have child elements by passing a function (closure) to the element method:
 
     buffer.Body(htmlbuffer.Attrs{"class": "demo"}, func() {
         buffer.Div_(func() {
@@ -74,8 +78,25 @@ For every input type there are two methods. Using input type `email` as an examp
 * `func (b *HtmlBuffer) EmailInput_()`
 
 These methods let you write input elements of any type without explicitly declaring the type by passing it as an attribute.
-All input methods name are of the form capitalized input type name + `Input`, with the sole exception of datetime-local, which has
+All input methods name are of the form capitalized input type name + "Input", with the sole exception of datetime-local, which has
 the name `DatetimeLocalInput` and `DatetimeLocalInput_`
+
+Non-standard elements
+---------------------
+
+The HtmlBuffer exposes two lower level methods for writing elements. These can be used to write elements that are not part of the HTML spec. They can be useful if you e.g. are developing web applications with AngularJS and use directives.
+
+The methods are:
+
+* `func (b *HtmlBuffer) WriteNormalElement(tagName string, attrs Attrs, innerHtml func())` // For writing elements with start and end tags
+* `func (b *HtmlBuffer) WriteVoidElement(tagName string, attrs Attrs)`                     // For writing void elements (start tag only)
+
+Using with the `net/http` package
+---------------------------------
+
+The HtmlBuffer has a method for writing its content to http.ResponseWriter:
+
+    func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter)
 
 "Extras"
 --------
@@ -86,14 +107,6 @@ Finally, there are some methods that make common things a bit more concise:
 * `func (b *HtmlBuffer) Html5_(innerHtml func())              // Same as above, but without attributes`
 * `func (b *HtmlBuffer) StylesheetLink(href string)           // Write a link to an external stylesheet`
 * `func (b *HtmlBuffer) ExternalScript(src string)            // Write a script element referencing an external javascript asset
-
-
-Using with the `net/http` package
----------------------------------
-
-The HtmlBuffer has a method for writing its content to a http.ResponseWriter:
-
-    func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter)
 
 Example
 -------
