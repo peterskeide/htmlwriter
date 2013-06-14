@@ -120,7 +120,7 @@ func TestHtml5_WritesDoctypeAndHtmlElement(t *testing.T) {
 
 // HtmlBuffer#Attrs
 func TestAttrsReturnsAttrsStructBasedOnGivenStringAttributesAndValues(t *testing.T) {
-	attrs := buffer.Attrs("id=foo", "class=main clearfix test", "checked", "data-test=test")
+	attrs := buffer.Attrs("id=%s, class=main clearfix test, checked, data-test=%s", "foo", "test")
 	assertAttributeValid(t, "id", "foo", attrs)
 	assertAttributeValid(t, "class", "main clearfix test", attrs)
 	assertAttributeValid(t, "checked", "", attrs)

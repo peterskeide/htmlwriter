@@ -2,6 +2,7 @@ package htmlbuffer
 
 import (
 	"bytes"
+	"fmt"
 	"html"
 	"io"
 	"net/http"
@@ -16,12 +17,6 @@ func NewHtmlBuffer() *HtmlBuffer {
 
 type HtmlBuffer struct {
 	bytes.Buffer
-}
-
-func WithHtmlBuffer(f func(b *HtmlBuffer)) string {
-	html := NewHtmlBuffer()
-	f(html)
-	return html.String()
 }
 
 func (b *HtmlBuffer) Text(text string) {
@@ -83,18 +78,21 @@ func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
 	}
 }
 
-func (b *HtmlBuffer) Attrs(strAttrs ...string) Attrs {
+func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs {
 	attrs := Attrs{}
 
-	for _, attr := range strAttrs {
-		parts := strings.Split(attr, "=")
-		switch len(parts) {
+	formattedAttrs := fmt.Sprintf(formatStringAttrs, a...)
+	parts := strings.Split(formattedAttrs, ",")
+
+	for _, attr := range parts {
+		attrAndValue := strings.Split(attr, "=")
+		switch len(attrAndValue) {
 		case 1:
-			attrs[parts[0]] = ""
+			attrs[strings.TrimSpace(attrAndValue[0])] = ""
 		case 2:
-			attrs[parts[0]] = parts[1]
+			attrs[strings.TrimSpace(attrAndValue[0])] = strings.TrimSpace(attrAndValue[1])
 		default:
-			panic("Invalid attribute string: " + attr)
+			panic("Invalid attribute declaration: " + attr)
 		}
 	}
 

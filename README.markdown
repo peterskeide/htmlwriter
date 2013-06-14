@@ -59,15 +59,21 @@ Shortcut methods
 
 The HtmlBuffer has some "shortcut" methods to make it simpler to define attributes and text/raw text. Assuming the HtmlBuffer variable is named `b`:
 
-    b.Div(b.Attrs("id=demo", "class=test widget"), func() {
+    b.Div(b.Attrs("id=%s, class=test widget", id), func() {
         b.Button_(b.Attrs("type=button"), b.TextF("Click me!"))
     })
 
 Available shortcut methods are:
 
-* `func (b *HtmlBuffer) TextF(text string) func()        // For writing text`
-* `func (b *HtmlBuffer) RawTextF(text string) func()     // For writing unescaped text`
-* `func (b *HtmlBuffer) Attrs(strAttrs ...string) Attrs  // For intializing htmlbuffer.Attrs with attribute values`
+* `func (b *HtmlBuffer) TextF(text string) func()                                // For writing text`
+* `func (b *HtmlBuffer) RawTextF(text string) func()                             // For writing unescaped text`
+* `func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs  // For intializing htmlbuffer.Attrs with attribute values`
+
+The `Attrs` method expects a string with a comma separated list of attributes, where the attribute name and value is separated by `=`. Example:
+
+    b.Attrs("id=content, class=first second")
+
+For marker attributes such as `checked`, just use the name of the attribute without a value (and without `=`)
 
 Input methods
 -------------
@@ -127,7 +133,7 @@ Example
                     b.Span_(b.TextF("World!"))
                 })
 
-                b.Form(b.Attrs("action=process"), func() {
+                b.Form(b.Attrs("id=name-form, action=process"), func() {
                     b.TextInput(b.Attrs("name=firstname"))
                     b.SubmitInput(b.Attrs("value=Send name"))
                 })
