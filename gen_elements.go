@@ -18,14 +18,6 @@ func (b *HtmlBuffer) Head_(innerHtml func()) {
 	b.WriteNormalElement("head", nil, innerHtml)
 }
 
-func (b *HtmlBuffer) Title(attrs Attrs, innerHtml func()) {
-	b.WriteNormalElement("title", attrs, innerHtml)
-}
-
-func (b *HtmlBuffer) Title_(innerHtml func()) {
-	b.WriteNormalElement("title", nil, innerHtml)
-}
-
 func (b *HtmlBuffer) Style(attrs Attrs, innerHtml func()) {
 	b.WriteNormalElement("style", attrs, innerHtml)
 }
@@ -696,22 +688,6 @@ func (b *HtmlBuffer) Optgroup(attrs Attrs, innerHtml func()) {
 
 func (b *HtmlBuffer) Optgroup_(innerHtml func()) {
 	b.WriteNormalElement("optgroup", nil, innerHtml)
-}
-
-func (b *HtmlBuffer) Option(attrs Attrs, innerHtml func()) {
-	b.WriteNormalElement("option", attrs, innerHtml)
-}
-
-func (b *HtmlBuffer) Option_(innerHtml func()) {
-	b.WriteNormalElement("option", nil, innerHtml)
-}
-
-func (b *HtmlBuffer) Textarea(attrs Attrs, innerHtml func()) {
-	b.WriteNormalElement("textarea", attrs, innerHtml)
-}
-
-func (b *HtmlBuffer) Textarea_(innerHtml func()) {
-	b.WriteNormalElement("textarea", nil, innerHtml)
 }
 
 func (b *HtmlBuffer) Output(attrs Attrs, innerHtml func()) {

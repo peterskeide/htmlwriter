@@ -2,7 +2,6 @@
 non-void:
   - html
   - head
-  - title
   - style
   - script
   - noscript
@@ -87,8 +86,6 @@ non-void:
   - select
   - datalist
   - optgroup
-  - option
-  - textarea
   - output
   - progress
   - meter
@@ -113,6 +110,11 @@ void:
   - source
   - track
   - embed
+
+text:
+  - title
+  - option
+  - textarea
 
 inputs:
   - button

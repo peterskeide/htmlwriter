@@ -96,10 +96,37 @@ def method_name_from_type(type)
   type.split("-").map { |str| str.capitalize }.join("") << "Input"
 end
 
+def create_text_only_elements_go_file(elements)
+  text_only_elements_go_file = File.open("gen_text_only_elements.go", "w") do |f|
+    write_header(f)
+
+    elements.each do |el|
+      func = <<FUNC
+func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, text string) {
+\tb.WriteNormalElement("#{el}", attrs, b.TextF(text))
+}
+
+FUNC
+
+      f << func
+
+      func_ = <<FUNC
+func (b *HtmlBuffer) #{el.capitalize}_(text string) {
+\tb.WriteNormalElement("#{el}", nil, b.TextF(text))
+}
+
+FUNC
+
+      f << func_
+    end
+  end
+end
+
 desc "Generate go file with elements"
 task :generate do
   elements = YAML.load_file("elements.yml")
   create_elements_go_file(elements["non-void"])
   create_void_elements_go_file(elements["void"])
   create_input_elements_go_file(elements["inputs"])
+  create_text_only_elements_go_file(elements["text"])
 end
