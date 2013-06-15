@@ -1,7 +1,7 @@
 HtmlBuffer
 ==========
 
-The HtmlBuffer is a struct that embeds a bytes.Buffer and decorates it with a set of conveniece methods for generating HTML 5 documents.
+The HtmlBuffer is a struct that embeds a bytes.Buffer and decorates it with a set of methods for generating HTML 5 documents.
 
 It supports all the elements listed [here](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list "HTML5 element list")
 
@@ -18,14 +18,13 @@ Installation
 Normal (non-void) elements
 --------------------------
 
-For every non-void element the HtmlBuffer API exposes two methods; a "normal" method and an "underscore" method.
+For every non-void element the HtmlBuffer API exposes two methods; a normal method and an "underscore" method.
 For the `body` element that would be:
 
 * `func (b *HtmlBuffer) Body(attrs htmlbuffer.Attrs, innerHtml func())`
 * `func (b *HtmlBuffer) Body_(innerHtml func())`
 
-The "underscore" method is a convenience method that makes the API a little less noisy
-when you need to generate elements without attributes (you don't have to pass a nil value for attrs everywhere).
+The "underscore" method makes the API a little less noisy when you need to generate elements without attributes (you don't have to pass a nil value for attrs everywhere).
 
 Void elements
 -------------
@@ -51,7 +50,7 @@ escape HTML content, use the `RawText` method: `buffer.RawText("<div>foo</div>")
 Child elements
 --------------
 
-Elements can have child elements by passing a function (closure) to the element method:
+Elements can have child elements by passing a closure to the element method:
 
     buffer.Body(htmlbuffer.Attrs{"class": "demo"}, func() {
         buffer.Div_(func() {
@@ -62,40 +61,39 @@ Elements can have child elements by passing a function (closure) to the element 
 Shortcut methods
 ----------------
 
-The HtmlBuffer has some "shortcut" methods to make it simpler to define attributes and text/raw text. Assuming the HtmlBuffer variable is named `b`:
+The HtmlBuffer has some methods to make it simpler to define attributes and text/raw text. Assuming the HtmlBuffer variable is named `b`:
 
     b.Div(b.Attrs("id=%s, class=test widget", id), func() {
-        b.Button_(b.Attrs("type=button"), b.TextF("Click me!"))
+        b.Button(b.Attrs("type=button"), b.TextF("Click me!"))
     })
 
 Available shortcut methods are:
 
-* `func (b *HtmlBuffer) TextF(text string) func()                                // For writing text`
-* `func (b *HtmlBuffer) RawTextF(text string) func()                             // For writing unescaped text`
-* `func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs  // For intializing htmlbuffer.Attrs with attribute values`
+* `func (b *HtmlBuffer) TextF(text string) func()`                                // For writing text
+* `func (b *HtmlBuffer) RawTextF(text string) func()`                             // For writing unescaped text
+* `func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs`  // For intializing htmlbuffer.Attrs with attribute values
 
 The `Attrs` method expects a string with a comma separated list of attributes, where the attribute name and value is separated by `=`. Example:
 
     b.Attrs("id=content, class=first second")
 
-For marker attributes such as `checked`, just use the name of the attribute without a value (and without `=`)
+For marker attributes such as `checked`, just use the name of the attribute without a value (and without `=`).
+
+The attributes string can contain format verbs as defined in the [fmt package](http://golang.org/pkg/fmt/ "fmt package documentation").
 
 Input methods
 -------------
 
-For every input type there are two methods. Using input type `email` as an example:
+For every input type there are two methods that let you write an input element of that type to the buffer without explicitly declaring the type attribute. Using type `email` as an example:
 
 * `func (b *HtmlBuffer) EmailInput(attrs htmlbuffer.Attrs)`
 * `func (b *HtmlBuffer) EmailInput_()`
 
-These methods let you write input elements of any type without explicitly declaring the type by passing it as an attribute.
-All input methods name are of the form capitalized input type name + "Input", with the sole exception of datetime-local, which has
-the name `DatetimeLocalInput` and `DatetimeLocalInput_`
-
 Non-standard elements
 ---------------------
 
-The HtmlBuffer exposes two lower level methods for writing elements. These can be used to write elements that are not part of the HTML spec. They can be useful if you e.g. are developing web applications with AngularJS and use directives.
+The HtmlBuffer exposes two lower level methods for writing elements. These can be used to write elements that are not part of the HTML spec, such
+as AngularJS directives.
 
 The methods are:
 
@@ -114,10 +112,10 @@ The HtmlBuffer has a method for writing its content to http.ResponseWriter:
 
 Finally, there are some methods that make common things a bit more concise:
 
-* `func (b *HtmlBuffer) Html5(attrs Attrs, innerHtml func())  // Writes a HTML5 doctype declaration and a html element`
-* `func (b *HtmlBuffer) Html5_(innerHtml func())              // Same as above, but without attributes`
-* `func (b *HtmlBuffer) StylesheetLink(href string)           // Write a link to an external stylesheet`
-* `func (b *HtmlBuffer) ExternalScript(src string)            // Write a script element referencing an external javascript asset
+* `func (b *HtmlBuffer) Html5(attrs Attrs, innerHtml func())`  // Writes a HTML5 doctype declaration and a html element
+* `func (b *HtmlBuffer) Html5_(innerHtml func())`              // Same as above, but without attributes
+* `func (b *HtmlBuffer) StylesheetLink(href string)`           // Write a link to an external stylesheet
+* `func (b *HtmlBuffer) ExternalScript(src string)`            // Write a script element referencing an external javascript asset
 
 Example
 -------
