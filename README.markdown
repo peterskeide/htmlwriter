@@ -18,13 +18,18 @@ Installation
 Normal (non-void) elements
 --------------------------
 
-For every non-void element the HtmlBuffer API exposes two methods; a normal method and an "underscore" method.
+For most non-void element the HtmlBuffer API exposes two methods; a normal method and an "underscore" method.
 For the `body` element that would be:
 
 * `func (b *HtmlBuffer) Body(attrs htmlbuffer.Attrs, innerHtml func())`
 * `func (b *HtmlBuffer) Body_(innerHtml func())`
 
 The "underscore" method makes the API a little less noisy when you need to generate elements without attributes (you don't have to pass a nil value for attrs everywhere).
+
+The `title`, `option` and `textarea` elements are a bit different. They only support text, and cannot have child elements:
+
+* `func (b *HtmlBuffer) Title(attrs Attrs, text string)`
+* `func (b *HtmlBuffer) Title_(text string)`
 
 Void elements
 -------------
@@ -126,7 +131,7 @@ Example
 
         b.Html5(b.Attrs("lang=en"), func() {
             b.Head_(func() {
-                b.Title_(b.TextF("HtmlBuffer Demo"))
+                b.Title_("HtmlBuffer Demo")
                 b.StylesheetLink("assets/demo.css")
             })
 
