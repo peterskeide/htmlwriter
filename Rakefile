@@ -5,7 +5,7 @@ def notice
 end
 
 def package
-  "package htmlbuffer\n\n"
+  "package htmlwriter\n\n"
 end
 
 def write_header(file)
@@ -19,8 +19,8 @@ def create_elements_go_file(elements)
 
     elements.each do |el|
       func = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, innerHtml func()) {
-\tb.WriteNormalElement("#{el}", attrs, innerHtml)
+func (w *HtmlWriter) #{el.capitalize}(attrs Attrs, innerHtml func()) {
+\tw.WriteNormalElement("#{el}", attrs, innerHtml)
 }
 
 FUNC
@@ -28,8 +28,8 @@ FUNC
       f << func
 
       func_ = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}_(innerHtml func()) {
-\tb.WriteNormalElement("#{el}", nil, innerHtml)
+func (w *HtmlWriter) #{el.capitalize}_(innerHtml func()) {
+\tw.WriteNormalElement("#{el}", nil, innerHtml)
 }
 
 FUNC
@@ -45,8 +45,8 @@ def create_void_elements_go_file(elements)
 
     elements.each do |el|
       func = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs) {
-\tb.WriteVoidElement("#{el}", attrs)
+func (w *HtmlWriter) #{el.capitalize}(attrs Attrs) {
+\tw.WriteVoidElement("#{el}", attrs)
 }
 
 FUNC
@@ -54,8 +54,8 @@ FUNC
       f << func
 
       func_ = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}_() {
-\tb.WriteVoidElement("#{el}", nil)
+func (w *HtmlWriter) #{el.capitalize}_() {
+\tw.WriteVoidElement("#{el}", nil)
 }
 
 FUNC
@@ -71,9 +71,9 @@ def create_input_elements_go_file(input_types)
 
     input_types.each do |type|
       func = <<FUNC
-func (b *HtmlBuffer) #{method_name_from_type(type)}(attrs Attrs) {
+func (w *HtmlWriter) #{method_name_from_type(type)}(attrs Attrs) {
 \tattrs["type"] = "#{type}"
-\tb.Input(attrs)
+\tw.Input(attrs)
 }
 
 FUNC
@@ -81,8 +81,8 @@ FUNC
       f << func
 
       func_ = <<FUNC
-func (b *HtmlBuffer) #{method_name_from_type(type)}_() {
-\tb.Input(Attrs{"type": "#{type}"})
+func (w *HtmlWriter) #{method_name_from_type(type)}_() {
+\tw.Input(Attrs{"type": "#{type}"})
 }
 
 FUNC
@@ -102,8 +102,8 @@ def create_text_only_elements_go_file(elements)
 
     elements.each do |el|
       func = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, formatStr string, a ...interface{}) {
-\tb.WriteNormalElement("#{el}", attrs, b.RawTextF(formatStr, a...))
+func (w *HtmlWriter) #{el.capitalize}(attrs Attrs, formatStr string, a ...interface{}) {
+\tw.WriteNormalElement("#{el}", attrs, w.RawTextF(formatStr, a...))
 }
 
 FUNC
@@ -111,8 +111,8 @@ FUNC
       f << func
 
       func_ = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}_(formatStr string, a ...interface{}) {
-\tb.WriteNormalElement("#{el}", nil, b.RawTextF(formatStr, a...))
+func (w *HtmlWriter) #{el.capitalize}_(formatStr string, a ...interface{}) {
+\tw.WriteNormalElement("#{el}", nil, w.RawTextF(formatStr, a...))
 }
 
 FUNC

@@ -1,58 +1,56 @@
-package htmlbuffer
+package htmlwriter
 
 import (
-	"bytes"
 	"fmt"
 	"html"
 	"io"
-	"net/http"
 	"strings"
 )
 
 type Attrs map[string]string
 
-func NewHtmlBuffer() *HtmlBuffer {
-	return &HtmlBuffer{}
+func NewHtmlWriter(writer io.Writer) *HtmlWriter {
+	return &HtmlWriter{writer}
 }
 
-type HtmlBuffer struct {
-	bytes.Buffer
+type HtmlWriter struct {
+	io.Writer
 }
 
-func (b *HtmlBuffer) Text(formatStr string, a ...interface{}) {
+func (b *HtmlWriter) WriteString(str string) {
+	b.Write([]byte(str))
+}
+
+func (b *HtmlWriter) Text(formatStr string, a ...interface{}) {
 	text := html.EscapeString(fmt.Sprintf(formatStr, a...))
 	b.WriteString(text)
 }
 
-func (b *HtmlBuffer) TextF(formatStr string, a ...interface{}) func() {
+func (b *HtmlWriter) TextF(formatStr string, a ...interface{}) func() {
 	return func() {
 		b.Text(formatStr, a...)
 	}
 }
 
-func (b *HtmlBuffer) RawText(formatStr string, a ...interface{}) {
+func (b *HtmlWriter) RawText(formatStr string, a ...interface{}) {
 	b.WriteString(fmt.Sprintf(formatStr, a...))
 }
 
-func (b *HtmlBuffer) RawTextF(formatStr string, a ...interface{}) func() {
+func (b *HtmlWriter) RawTextF(formatStr string, a ...interface{}) func() {
 	return func() {
 		b.RawText(formatStr, a...)
 	}
 }
 
-func (b *HtmlBuffer) WriteToResponse(res http.ResponseWriter) {
-	io.WriteString(res, b.String())
-}
-
-func (b *HtmlBuffer) WriteNormalElement(tagName string, attrs Attrs, innerHtml func()) {
+func (b *HtmlWriter) WriteNormalElement(tagName string, attrs Attrs, innerHtml func()) {
 	b.writeElement(tagName, attrs, innerHtml, true)
 }
 
-func (b *HtmlBuffer) WriteVoidElement(tagName string, attrs Attrs) {
+func (b *HtmlWriter) WriteVoidElement(tagName string, attrs Attrs) {
 	b.writeElement(tagName, attrs, nil, false)
 }
 
-func (b *HtmlBuffer) writeElement(tagName string, attrs Attrs, innerHtml func(), close bool) {
+func (b *HtmlWriter) writeElement(tagName string, attrs Attrs, innerHtml func(), close bool) {
 	b.WriteString("<" + tagName)
 	b.writeAttributes(attrs)
 	b.WriteString(">")
@@ -66,7 +64,7 @@ func (b *HtmlBuffer) writeElement(tagName string, attrs Attrs, innerHtml func(),
 	}
 }
 
-func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
+func (b *HtmlWriter) writeAttributes(attrs Attrs) {
 	if attrs != nil {
 		for key, value := range attrs {
 			b.WriteString(" " + key)
@@ -78,7 +76,7 @@ func (b *HtmlBuffer) writeAttributes(attrs Attrs) {
 	}
 }
 
-func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs {
+func (b *HtmlWriter) Attrs(formatStringAttrs string, a ...interface{}) Attrs {
 	attrs := Attrs{}
 
 	formattedAttrs := fmt.Sprintf(formatStringAttrs, a...)
