@@ -102,8 +102,8 @@ def create_text_only_elements_go_file(elements)
 
     elements.each do |el|
       func = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, text string) {
-\tb.WriteNormalElement("#{el}", attrs, b.TextF(text))
+func (b *HtmlBuffer) #{el.capitalize}(attrs Attrs, formatStr string, a ...interface{}) {
+\tb.WriteNormalElement("#{el}", attrs, b.RawTextF(formatStr, a...))
 }
 
 FUNC
@@ -111,8 +111,8 @@ FUNC
       f << func
 
       func_ = <<FUNC
-func (b *HtmlBuffer) #{el.capitalize}_(text string) {
-\tb.WriteNormalElement("#{el}", nil, b.TextF(text))
+func (b *HtmlBuffer) #{el.capitalize}_(formatStr string, a ...interface{}) {
+\tb.WriteNormalElement("#{el}", nil, b.RawTextF(formatStr, a...))
 }
 
 FUNC

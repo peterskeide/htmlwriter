@@ -2,27 +2,27 @@
 
 package htmlbuffer
 
-func (b *HtmlBuffer) Title(attrs Attrs, text string) {
-	b.WriteNormalElement("title", attrs, b.TextF(text))
+func (b *HtmlBuffer) Title(attrs Attrs, formatStr string, a ...interface{}) {
+	b.WriteNormalElement("title", attrs, b.RawTextF(formatStr, a...))
 }
 
-func (b *HtmlBuffer) Title_(text string) {
-	b.WriteNormalElement("title", nil, b.TextF(text))
+func (b *HtmlBuffer) Title_(formatStr string, a ...interface{}) {
+	b.WriteNormalElement("title", nil, b.RawTextF(formatStr, a...))
 }
 
-func (b *HtmlBuffer) Option(attrs Attrs, text string) {
-	b.WriteNormalElement("option", attrs, b.TextF(text))
+func (b *HtmlBuffer) Option(attrs Attrs, formatStr string, a ...interface{}) {
+	b.WriteNormalElement("option", attrs, b.RawTextF(formatStr, a...))
 }
 
-func (b *HtmlBuffer) Option_(text string) {
-	b.WriteNormalElement("option", nil, b.TextF(text))
+func (b *HtmlBuffer) Option_(formatStr string, a ...interface{}) {
+	b.WriteNormalElement("option", nil, b.RawTextF(formatStr, a...))
 }
 
-func (b *HtmlBuffer) Textarea(attrs Attrs, text string) {
-	b.WriteNormalElement("textarea", attrs, b.TextF(text))
+func (b *HtmlBuffer) Textarea(attrs Attrs, formatStr string, a ...interface{}) {
+	b.WriteNormalElement("textarea", attrs, b.RawTextF(formatStr, a...))
 }
 
-func (b *HtmlBuffer) Textarea_(text string) {
-	b.WriteNormalElement("textarea", nil, b.TextF(text))
+func (b *HtmlBuffer) Textarea_(formatStr string, a ...interface{}) {
+	b.WriteNormalElement("textarea", nil, b.RawTextF(formatStr, a...))
 }
 
