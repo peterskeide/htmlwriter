@@ -43,6 +43,12 @@ func TestRawTextWritesStringToBuffer(t *testing.T) {
 	assertBufferMatches(t, "lorem ipsum", "Buffer did not contain expected raw text.")
 }
 
+// HtmlBuffer#Text
+func TestRawTextSupportsFormatVerbs(t *testing.T) {
+	buffer.RawText("the %s is the %s", "bird", "word")
+	assertBufferMatches(t, "the bird is the word", "Expected the bird to be the word.")
+}
+
 // HtmlBuffer#RawTextF
 func TestRawTextFReturnsFuncThatWritesStringToBuffer(t *testing.T) {
 	innerHtml := buffer.RawTextF("lorem ipsum")
@@ -60,6 +66,12 @@ func TestTextWritesStringToBuffer(t *testing.T) {
 func TestTextWritesEscapedHtmlToBuffer(t *testing.T) {
 	buffer.Text("<span>yo!</span>")
 	assertBufferMatches(t, "&lt;span&gt;yo!&lt;/span&gt;", "Buffer did not contain escaped html.")
+}
+
+// HtmlBuffer#Text
+func TestTextSupportsFormatVerbs(t *testing.T) {
+	buffer.Text("hi, my name is %s", "mud")
+	assertBufferMatches(t, "hi, my name is mud", "Buffer did not contain expected string.")
 }
 
 // HtmlBuffer#TextF

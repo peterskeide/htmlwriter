@@ -19,24 +19,24 @@ type HtmlBuffer struct {
 	bytes.Buffer
 }
 
-func (b *HtmlBuffer) Text(text string) {
-	text = html.EscapeString(text)
-	b.RawText(text)
-}
-
-func (b *HtmlBuffer) TextF(text string) func() {
-	return func() {
-		b.Text(text)
-	}
-}
-
-func (b *HtmlBuffer) RawText(text string) {
+func (b *HtmlBuffer) Text(formatStr string, a ...interface{}) {
+	text := html.EscapeString(fmt.Sprintf(formatStr, a...))
 	b.WriteString(text)
 }
 
-func (b *HtmlBuffer) RawTextF(text string) func() {
+func (b *HtmlBuffer) TextF(formatStr string, a ...interface{}) func() {
 	return func() {
-		b.RawText(text)
+		b.Text(formatStr, a...)
+	}
+}
+
+func (b *HtmlBuffer) RawText(formatStr string, a ...interface{}) {
+	b.WriteString(fmt.Sprintf(formatStr, a...))
+}
+
+func (b *HtmlBuffer) RawTextF(formatStr string, a ...interface{}) func() {
+	return func() {
+		b.RawText(formatStr, a...)
 	}
 }
 
