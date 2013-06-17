@@ -39,8 +39,8 @@ func TestWriteElementShouldWriteElementWithInnerHtml(t *testing.T) {
 
 // HtmlBuffer#RawText
 func TestRawTextWritesStringToBuffer(t *testing.T) {
-	buffer.RawText("lorem ipsum")
-	assertBufferMatches(t, "lorem ipsum", "Buffer did not contain expected raw text.")
+	buffer.RawText("<span>lorem ipsum</span>")
+	assertBufferMatches(t, "<span>lorem ipsum</span>", "Buffer did not contain expected raw text.")
 }
 
 // HtmlBuffer#Text
@@ -51,9 +51,9 @@ func TestRawTextSupportsFormatVerbs(t *testing.T) {
 
 // HtmlBuffer#RawTextF
 func TestRawTextFReturnsFuncThatWritesStringToBuffer(t *testing.T) {
-	innerHtml := buffer.RawTextF("lorem ipsum")
+	innerHtml := buffer.RawTextF("<div>lorem ipsum</div>")
 	innerHtml()
-	assertBufferMatches(t, "lorem ipsum", "Buffer did not contain expected raw text.")
+	assertBufferMatches(t, "<div>lorem ipsum</div>", "Buffer did not contain expected raw text.")
 }
 
 // HtmlBuffer#Text
