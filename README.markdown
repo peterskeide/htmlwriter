@@ -28,8 +28,8 @@ The "underscore" method makes the API a little less noisy when you need to gener
 
 The `title`, `option` and `textarea` elements are a bit different. They only support text, and cannot have child elements:
 
-* `func (b *HtmlBuffer) Title(attrs Attrs, text string)`
-* `func (b *HtmlBuffer) Title_(text string)`
+* `func (b *HtmlBuffer) Title(attrs Attrs, formatStr string, a ...interface{})`
+* `func (b *HtmlBuffer) Title_(formatStr string, a ...interface{})`
 
 Void elements
 -------------
@@ -50,7 +50,10 @@ Text
 -----
 
 To write element text to the buffer, use the `Text` method: `buffer.Text("lorem ipsum")`. The `Text` method escapes HTML. If you don't want to
-escape HTML content, use the `RawText` method: `buffer.RawText("<div>foo</div>")`.
+escape HTML content, use the `RawText` method: `buffer.RawText("<div>foo</div>")`. Both methods support format verbs via fmt.Sprintf.
+
+* `func (b *HtmlBuffer) Text(formatStr string, a ...interface{})`
+* `func (b *HtmlBuffer) RawText(formatStr string, a ...interface{})`
 
 Child elements
 --------------
@@ -74,8 +77,8 @@ The HtmlBuffer has some methods to make it simpler to define attributes and text
 
 Available shortcut methods are:
 
-* `func (b *HtmlBuffer) TextF(text string) func()`                                // For writing text
-* `func (b *HtmlBuffer) RawTextF(text string) func()`                             // For writing unescaped text
+* `func (b *HtmlBuffer) TextF(formatStr string, a ...interface{}) func()`         // For writing text
+* `func (b *HtmlBuffer) RawTextF(formatStr string, a ...interface{}) func()`      // For writing unescaped text
 * `func (b *HtmlBuffer) Attrs(formatStringAttrs string, a ...interface{}) Attrs`  // For intializing htmlbuffer.Attrs with attribute values
 
 The `Attrs` method expects a string with a comma separated list of attributes, where the attribute name and value is separated by `=`. Example:
