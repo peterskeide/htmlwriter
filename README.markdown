@@ -118,8 +118,10 @@ Finally, there are some methods that make common things a bit more concise:
 * `func (w *HtmlWriter) StylesheetLink(href string)`           // Write a link to an external stylesheet
 * `func (w *HtmlWriter) ExternalScript(src string)`            // Write a script element referencing an external javascript asset
 
-Example
--------
+Examples
+--------
+
+A basic example of writing static HTML directly to the ResponseWriter:
 
     func DemoHandler(res http.ResponseWriter, req *http.Request) {
 
@@ -138,12 +140,93 @@ Example
                 })
 
                 w.Form(w.Attrs("id=name-form, action=process"), func() {
-                    w.TextInput(b.Attrs("name=firstname"))
-                    w.SubmitInput(b.Attrs("value=Send name"))
+                    w.TextInput(w.Attrs("name=firstname"))
+                    w.SubmitInput(w.Attrs("value=Send name"))
                 })
             })
         })
     }
+
+Building a simple templating system on top of the HtmlWriter (full program):
+
+    package main
+
+    import (
+        "github.com/peterskeide/htmlwriter"
+        "log"
+        "net/http"
+    )
+
+    func main() {
+        http.HandleFunc("/person", PersonHandler)
+        http.HandleFunc("/persons", PersonListHandler)
+
+        log.Println("Starting server on port 8000")
+        log.Fatal(http.ListenAndServe(":8000", nil))
+    }
+
+    func PersonHandler(res http.ResponseWriter, req *http.Request) {
+        pt := NewPersonTemplates(res)
+
+        pt.title = "Person"
+        pt.person = Person{"John Doe", 30}
+
+        pt.Layout(pt.PersonTemplate)
+    }
+
+    func PersonListHandler(res http.ResponseWriter, req *http.Request) {
+        pt := NewPersonTemplates(res)
+
+        pt.title = "Person List"
+        pt.persons = []Person{Person{"John Doe", 30}, Person{"Jane Doe", 28}}
+
+        pt.Layout(pt.PersonListTemplate)
+    }
+
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    type PersonTemplates struct {
+        *htmlwriter.HtmlWriter
+        title   string
+        person  Person
+        persons []Person
+    }
+
+    func NewPersonTemplates(res http.ResponseWriter) (pt *PersonTemplates) {
+        pt = new(PersonTemplates)
+        pt.HtmlWriter = htmlwriter.NewHtmlWriter(res)
+        return
+    }
+
+    func (pt *PersonTemplates) Layout(template func()) {
+        pt.Html5_(func() {
+            pt.Head_(func() {
+                pt.Title_(pt.title)
+            })
+
+            pt.Body_(template)
+        })
+    }
+
+    func (pt *PersonTemplates) PersonTemplate() {
+        pt.Div(pt.Attrs("class=person"), func() {
+            pt.Em_(pt.TextF(pt.person.Name))
+            pt.Text(", age %d", pt.person.Age)
+        })
+    }
+
+    func (pt *PersonTemplates) PersonListTemplate() {
+        pt.Ul_(func() {
+            for _, p := range pt.persons {
+                pt.Li_(pt.TextF("%s (%d)", p.Name, p.Age))
+            }
+        })
+    }
+
+By following the approach of the example above, it is very easy to build reusable widgets, form controls etc.
 
 License (MIT)
 -------------
